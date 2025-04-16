@@ -1,0 +1,56 @@
+package in.myproject.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import in.myproject.Service.MakeMyTripService;
+import in.myproject.Service.MakeMyTripServiceImpl;
+import in.myproject.request.Passenger;
+import in.myproject.response.Ticket;
+
+@Controller
+public class MakeMyTripController {
+	
+	@Autowired
+	private MakeMyTripService service;
+	
+	@GetMapping("/")
+	public String loadForm(Model model)
+	{
+		model.addAttribute("passenger",new Passenger());
+		return "index";
+	}
+	
+	@PostMapping("/book-ticket")
+	public String bookTicket(@ModelAttribute("passenger") Passenger passenger, Model model)
+	{
+		System.out.println(passenger);
+		Ticket bookTicket = service.bookTicket(passenger);
+		model.addAttribute("msg", "Your ticket is booked with ID:-"+bookTicket.getTicketNum());
+		return "index";
+	}
+	
+	
+	@GetMapping("/get-ticket")
+	public String getTiket(@RequestParam Integer ticketNum,Model model)
+	{
+		System.out.println("hello");
+		Ticket ticketNumber = service.getTicket(ticketNum);
+		model.addAttribute("ticketNumber",ticketNumber);
+		System.out.println("hello");
+		return "ticket-form";
+	}
+	
+	@GetMapping("/ticket")
+	public String getTicketForm(Model model)
+	{
+		model.addAttribute("ticket",new Ticket());
+		return "ticket-form";
+	}
+
+}

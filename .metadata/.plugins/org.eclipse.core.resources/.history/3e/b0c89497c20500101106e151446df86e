@@ -1,0 +1,47 @@
+package in.myproject.impl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import in.myproject.Service.BookingService;
+import in.myproject.request.Passenger;
+import in.myproject.response.Ticket;
+
+@Service
+public class BookingServiceImpl implements BookingService {
+	private Integer ticketNum=1;
+	
+//	@Autowired
+//	private Ticket ticket;
+	
+	private Map<Integer, Ticket> ticketsMap=new HashMap<>(); 
+
+	@Override
+	public Ticket bookTicket(Passenger passenger) {
+		Ticket ticket=new Ticket();
+		
+		BeanUtils.copyProperties(passenger, ticket);
+		ticket.setTicketNum(ticketNum);
+		ticket.setTicketCost(50);
+		ticket.setTicketStatus("CNF");
+		ticketNum++;
+		
+		ticketsMap.put(ticketNum, ticket);
+		return ticket;
+	}
+
+	@Override
+	public Ticket getTicket(Integer ticketNumber) {
+		
+		if(ticketsMap.containsKey(ticketNumber))
+		{
+			return ticketsMap.get(ticketNumber);
+		}
+		return null;
+	}
+
+}

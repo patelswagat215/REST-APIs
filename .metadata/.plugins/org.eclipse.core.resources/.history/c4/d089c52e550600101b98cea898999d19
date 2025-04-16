@@ -1,0 +1,20 @@
+package in.myproject.Service;
+
+import in.myproject.request.Passenger;
+import in.myproject.response.Ticket;
+
+public class MakeMyTripServiceImpl implements MakeMyTripService {
+
+	@Override
+	public Ticket bookTicket(Passenger passenger) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ticket getTicket(Integer ticketNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

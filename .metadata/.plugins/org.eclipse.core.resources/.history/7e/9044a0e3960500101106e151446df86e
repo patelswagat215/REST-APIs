@@ -1,0 +1,11 @@
+package in.myproject.Service;
+
+import in.myproject.request.Passenger;
+import in.myproject.response.Ticket;
+
+public interface BookingService {
+	
+	public Ticket bookTicket(Passenger passenger);
+	public Ticket getTicket(Integer ticket);
+	
+}

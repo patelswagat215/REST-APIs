@@ -1,0 +1,25 @@
+package in.myproject.Service;
+
+import org.springframework.stereotype.Service;
+
+import in.myproject.request.Passenger;
+import in.myproject.response.Ticket;
+
+@Service
+public class MakeMyTripServiceImpl implements MakeMyTripService {
+	
+	private String BOOK_TICKET_URL="http://localhost:9090/bookTicket";
+
+	@Override
+	public Ticket bookTicket(Passenger passenger) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Ticket getTicket(Integer ticketNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

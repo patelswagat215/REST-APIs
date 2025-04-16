@@ -1,0 +1,16 @@
+package in.myproject.Controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import in.myproject.request.Passenger;
+
+@Controller
+public class MakeMyTripController {
+	public String loadForm(Model model)
+	{
+		model.addAttribute("passenger",new Passenger());
+		return null;
+	}
+
+}

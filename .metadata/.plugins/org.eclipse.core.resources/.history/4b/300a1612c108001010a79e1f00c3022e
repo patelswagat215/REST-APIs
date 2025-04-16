@@ -1,0 +1,55 @@
+package in.myproject.Service;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import in.myproject.request.Passenger;
+import in.myproject.response.Ticket;
+
+@Service
+public class MakeMyTripServiceImpl implements MakeMyTripService {
+
+	private String BOOK_TICKET_URL = "http://localhost:9090/bookTicket";
+	private String GET_TICKET_URL = "http://localhost:9090//getTicket/{ticketNumber}";
+
+	@Override
+	public Ticket bookTicket(Passenger passenger) {
+		/*
+		 * RestTemplate rt=new RestTemplate(); ResponseEntity<Ticket> postForEntity =
+		 * rt.postForEntity(BOOK_TICKET_URL,passenger,Ticket.class); Ticket ticket =
+		 * postForEntity.getBody(); return ticket;
+		 */
+
+		WebClient webClient = WebClient.create();
+		Ticket ticket = webClient.post()
+				.uri(BOOK_TICKET_URL, passenger).
+				.bodyValue(passenger)
+				.retrieve()
+				.bodyToMono(Ticket.class)
+				.block();
+		return ticket;
+	}
+
+	@Override
+	public Ticket getTicket(Integer ticketNumber) {
+		/*
+		 * Using RestTempelate Class RestTemplate rt=new RestTemplate();
+		 * ResponseEntity<Ticket> getForEntity =
+		 * rt.getForEntity(GET_TICKET_URL,Ticket.class,ticketNumber); Ticket ticket =
+		 * getForEntity.getBody(); return ticket;
+		 */
+
+		// Using WebClient Interface
+		WebClient webClient = WebClient.create();
+		Ticket ticket = webClient.get()
+				.uri(GET_TICKET_URL, ticketNumber)
+				.retrieve()
+				.bodyToMono(Ticket.class)
+				.block();
+		return ticket;
+
+	}
+
+}

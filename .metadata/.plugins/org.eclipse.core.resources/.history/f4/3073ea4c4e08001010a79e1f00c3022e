@@ -1,0 +1,33 @@
+package in.myproject.Service;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import in.myproject.request.Passenger;
+import in.myproject.response.Ticket;
+
+@Service
+public class MakeMyTripServiceImpl implements MakeMyTripService {
+	
+	private String BOOK_TICKET_URL="http://localhost:9090/bookTicket";
+	private String GET_TICKET_URL="http://localhost:9090//getTicket/{toto}";
+
+	@Override
+	public Ticket bookTicket(Passenger passenger) {
+	 RestTemplate rt=new RestTemplate();
+	 ResponseEntity<Ticket> postForEntity = rt.postForEntity(BOOK_TICKET_URL,passenger,Ticket.class);
+	 Ticket ticket = postForEntity.getBody();	
+	 return ticket;
+	}
+
+	@Override
+	public Ticket getTicket(Integer ticketNumber) {
+		 RestTemplate rt=new RestTemplate();
+		 ResponseEntity<Ticket> postForEntity = rt.postForEntity(GET_TICKET_URL,ticketNumber,Ticket.class);
+		 Ticket ticket = postForEntity.getBody();
+		return ticket;
+		
+	}
+
+}

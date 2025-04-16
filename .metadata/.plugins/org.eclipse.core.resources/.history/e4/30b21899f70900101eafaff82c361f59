@@ -1,0 +1,18 @@
+package in.myproject.rest;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserRestController {
+
+	public String getUserName(Integer userId) throws Exception {
+		if (userId == 101) {
+			return "John";
+		} else if (userId == 201) {
+			return "Smith";
+		} else {
+			throw new Exception("User Not Found");
+		}
+	}
+
+}

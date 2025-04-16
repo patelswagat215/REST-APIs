@@ -1,0 +1,19 @@
+package in.myproject.Controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import in.myproject.request.Passenger;
+
+@Controller
+public class MakeMyTripController {
+	
+	@GetMapping("/loadIndexPage")
+	public String loadForm(Model model)
+	{
+		model.addAttribute("passenger",new Passenger());
+		return "index";
+	}
+
+}

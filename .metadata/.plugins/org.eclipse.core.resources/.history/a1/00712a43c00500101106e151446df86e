@@ -1,0 +1,42 @@
+package in.myproject.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import in.myproject.impl.BookingServiceImpl;
+import in.myproject.request.Passenger;
+import in.myproject.response.Ticket;
+
+@RestController
+public class BookingController {
+	
+	@Autowired
+	private BookingServiceImpl service;
+	
+	
+	//Booking the ticket
+	@PostMapping(value="/bookTicket", 
+			consumes = {"application/json"},
+			produces = {"application/json"})
+	public ResponseEntity<Ticket> bookTicket(@RequestBody Passenger passenger)
+	{
+		Ticket bookTicket = service.bookTicket(passenger);
+		return new ResponseEntity<Ticket>(bookTicket,HttpStatus.CREATED);
+	}
+	
+	//Getting the ticket
+	@GetMapping(value="/getTicket/{id}",
+			produces="application/json")
+	public ResponseEntity<Ticket> getTicket(@PathVariable Integer id)
+	{
+		Ticket ticket = service.getTicket(id);
+		return new ResponseEntity<Ticket>(ticket,HttpStatus.OK);
+	}
+
+}

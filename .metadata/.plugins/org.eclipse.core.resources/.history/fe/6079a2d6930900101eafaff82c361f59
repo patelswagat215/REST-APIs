@@ -1,0 +1,12 @@
+package in.myproject.exception;
+
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+@ControllerAdvice
+public class ErrorInfo {
+	
+	private String code;
+	private String msg;
+	private String localDate;
+
+}

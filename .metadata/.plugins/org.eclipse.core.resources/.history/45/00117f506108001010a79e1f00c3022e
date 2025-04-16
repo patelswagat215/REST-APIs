@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Ticket Booking Details</title>
+</head>
+
+<body>
+    <h2>Booking Ticket</h2>
+
+    <form th:action="@{/get-ticket}" method="get">
+        Enter Ticket Number: <input type="text" name="ticketNum" required />
+        <input type="submit" value="Get Ticket"/>
+    </form>
+
+    <hr>
+
+   
+        <p><strong>Name:</strong> <span th:text="${ticket.name}"></span></p>
+        <p><strong>From:</strong> <span th:text="${ticket.from}"></span></p>
+        <p><strong>To:</strong> <span th:text="${ticket.to}"></span></p>
+        <p><strong>Date of Journey:</strong> <span th:text="${ticket.doj}"></span></p>
+        <p><strong>Status:</strong> <span th:text="${ticket.ticketStatus}"></span></p>
+        <p><strong>Cost:</strong> <span th:text="${ticket.ticketCost}"></span></p>
+   
+
+</body>
+</html>

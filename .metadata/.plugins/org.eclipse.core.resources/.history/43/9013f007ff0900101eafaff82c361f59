@@ -1,0 +1,16 @@
+package in.myproject.restControllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DemoController {
+	
+	@GetMapping("/Welcome")
+	public String getWelcomeMsg()
+	{
+		int a=10/0;
+		return "Welcome to Rest API";
+	}
+
+}

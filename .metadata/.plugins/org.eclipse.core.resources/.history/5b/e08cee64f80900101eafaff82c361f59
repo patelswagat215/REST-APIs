@@ -1,0 +1,21 @@
+package in.myproject.rest;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserRestController {
+
+	@GetMapping("/User/{userId}")
+	public String getUserName(@PathVariable("userId") Integer userId) throws Exception {
+		if (userId == 101) {
+			return "John";
+		} else if (userId == 201) {
+			return "Smith";
+		} else {
+			throw new Exception("User Not Found");
+		}
+	}
+
+}

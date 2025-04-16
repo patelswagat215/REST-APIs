@@ -1,0 +1,5 @@
+package in.myproject.exception;
+
+public class ErrorInfo {
+
+}

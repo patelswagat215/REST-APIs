@@ -1,0 +1,15 @@
+package in.myproject.response;
+
+import lombok.Data;
+
+@Data
+public class Ticket {
+	-ticketNum
+	-name
+	-cost
+	-from
+	-to
+	-doj
+	-status
+
+}

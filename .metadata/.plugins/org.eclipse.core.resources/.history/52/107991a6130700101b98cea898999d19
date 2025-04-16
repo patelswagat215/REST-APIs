@@ -1,0 +1,24 @@
+package in.myproject.response;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
+
+import in.myproject.request.Passenger;
+import lombok.Data;
+
+@Data
+@Component
+public class Ticket {
+	
+	Passenger p1=new Passenger();
+	
+	private Integer ticketNum;
+	private String ticketStatus;
+	private Integer ticketCost;
+	private String name;
+	private String from;
+	private String to;
+	private String doj;
+	private Integer trainNumber;
+
+}

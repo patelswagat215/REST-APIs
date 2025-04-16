@@ -1,0 +1,21 @@
+package in.myproject.exception;
+
+import java.time.LocalDateTime;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
+public class AppExceptionHandler {
+
+	public ResponseEntity<ErrorInfo> handleException(Exception e)
+	{
+		String message = e.getMessage();
+		
+		ErrorInfo info=new ErrorInfo();
+		info.setCode("SBIN001");
+		info.setMsg(message);
+		info.setWhen(LocalDateTime.now());
+		return null;
+	}
+}
